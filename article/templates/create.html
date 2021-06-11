@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Article</title>
+	<link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body> 
+	{% if user.is_authenticated %}
+		<h1>Make our own article</h1><br>
+		<form method="post" action="{% url 'create' %}">
+			{% csrf_token %}
+			{{form}}
+			<input type="submit">
+		</form>
+	{% else %}
+		<h1>You are not logged in</h1><br>
+		<a href="{% url 'login' %}">login</a>
+	{% endif %}
+</body>
+</html>

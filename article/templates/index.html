@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Article</title>
+	<link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body> 
+	<h1>All Articles</h1><br>
+	{% if user.is_authenticated %}
+		<h2 align="center"> Hello {{ user.username }}</h2><br>
+		<h2 align="right"><a href="{% url 'logout' %}">Logout</a></h2><br>
+		<h2 align="right"><a href="{% url 'create' %}">Create blog</a></h2><br>
+		{% for i in article %}
+			{% if i.author == user %}
+				<h2><a href="{% url 'detail' slug=i.slug %}">{{i.title}}</a></h2>
+				<p>{{i.snippet}}</p>
+				{{i.date}}<br><hr>
+			{%endif%}
+	{% endfor %}
+	{% else %}
+		<h3 align="right"><a href="{% url 'register' %}">Register</a>    <a href="{% url 'login' %}">Login</a></h3><br>
+		<h2>Login to view your blogs</h2>
+	{% endif %}
+
+	
+</body>
+</html>

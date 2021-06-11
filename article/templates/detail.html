@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Article</title>
+	<link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body>
+	{% if user.is_authenticated %}
+		<h1 align="center">{{article.title}}</h1>
+		<p>{{article.body}}</p>
+	{% else %}
+		<h1>You are not logged in</h1><br>
+		<a href="{% url 'login' %}">login</a>
+	{% endif %}
+</body>
+</html>
